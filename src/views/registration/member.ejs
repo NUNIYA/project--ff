@@ -1,0 +1,25 @@
+<!-- Update the student ID section -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const studentIdUpload = document.getElementById('studentIdUpload');
+    const studentIdInput = document.querySelector('input[name="studentId"]');
+    
+    function toggleStudentIdUpload(show) {
+        studentIdUpload.style.display = show ? 'block' : 'none';
+        studentIdInput.required = show;
+    }
+
+    // Add event listeners to radio buttons
+    document.querySelectorAll('input[name="isStudent"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            toggleStudentIdUpload(this.value === 'true');
+        });
+    });
+
+    // Initial state
+    const initialValue = document.querySelector('input[name="isStudent"]:checked')?.value;
+    if (initialValue) {
+        toggleStudentIdUpload(initialValue === 'true');
+    }
+});
+</script>
