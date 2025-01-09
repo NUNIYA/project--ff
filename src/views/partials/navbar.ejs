@@ -9,20 +9,23 @@
                 <a href="/" class="hover:text-blue-200">Home</a>
                 <a href="/about" class="hover:text-blue-200">About Us</a>
                 <a href="/packages" class="hover:text-blue-200">Packages</a>
-                <div class="relative group">
-                    <button class="hover:text-blue-200 flex items-center focus:outline-none">
+                
+                <!-- Modified dropdown section -->
+                <div class="relative dropdown">
+                    <button class="hover:text-blue-200 flex items-center focus:outline-none dropbtn">
                         Join Us
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white z-50 hidden group-hover:block">
+                    <div class="dropdown-content absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white">
                         <div class="py-1">
                             <a href="/register/member" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Become a Member</a>
                             <a href="/register/trainer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Apply as Trainer</a>
                         </div>
                     </div>
                 </div>
+
                 <a href="/contact" class="hover:text-blue-200">Contact</a>
                 <a href="/faq" class="hover:text-blue-200">FAQ</a>
             </div>
@@ -46,3 +49,39 @@
         </div>
     </div>
 </nav>
+
+<!-- Add this CSS to your stylesheet or in a <style> tag in your header -->
+<style>
+    .dropdown-content {
+        display: none;
+        z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
+
+<!-- Optional: Add this JavaScript if you want to handle clicks as well -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const button = dropdown.querySelector('.dropbtn');
+            const content = dropdown.querySelector('.dropdown-content');
+            
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
